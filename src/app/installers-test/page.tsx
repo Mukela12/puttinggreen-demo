@@ -215,7 +215,6 @@ export default function InstallersTestPage() {
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">
               <span className="gradient-text">PuttingGreen.com</span>
-              <span className="text-gray-900"> Installer Directory</span>
             </h1>
             <p className="text-lg text-gray-600">
               Find expert putting green installers in your area

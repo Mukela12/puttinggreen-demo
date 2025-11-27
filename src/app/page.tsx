@@ -124,8 +124,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed"
           >
-            A production-ready Next.js component featuring advanced filtering, sorting,
-            and beautiful animations built with TypeScript and Tailwind CSS.
+            Find and connect with professional putting green installers in your area.
           </motion.p>
 
           {/* Hero Image */}

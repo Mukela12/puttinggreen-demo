@@ -32,10 +32,21 @@ export default function InstallersTestPage() {
 
   // Filter installers
   const filteredInstallers = React.useMemo(() => {
+    console.log('🔄 FILTER RUNNING:', {
+      rawSearch: filters.search,
+      searchLength: filters.search?.length,
+      trimmedSearch: filters.search?.trim(),
+      trimmedLength: filters.search?.trim().length,
+      city: filters.city,
+      skillLevel: filters.skillLevel,
+    });
+
     return mockInstallers.filter((installer) => {
-      // Search filter
-      if (filters.search) {
-        const searchLower = filters.search.toLowerCase();
+      // Search filter - trim to handle whitespace
+      const searchTerm = filters.search?.trim();
+      if (searchTerm) {
+        console.log(`  ✓ Filtering installer: ${installer.name} with search: "${searchTerm}"`);
+        const searchLower = searchTerm.toLowerCase();
         const matchesSearch =
           installer.name.toLowerCase().includes(searchLower) ||
           installer.city.toLowerCase().includes(searchLower) ||
@@ -56,6 +67,11 @@ export default function InstallersTestPage() {
       return true;
     });
   }, [filters]);
+
+  // Log final filtered count
+  React.useEffect(() => {
+    console.log(`📊 FILTERED RESULT: ${filteredInstallers.length} installers`);
+  }, [filteredInstallers]);
 
   // Sort installers
   const sortedInstallers = React.useMemo(() => {
@@ -134,19 +150,89 @@ export default function InstallersTestPage() {
   } as const;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-primary-light/10">
-      {/* Header */}
-      <header className="bg-white border-b border-border shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gradient-to-br from-sage-50 via-white to-sage-100 relative overflow-hidden">
+      {/* Premium Grid Background Pattern */}
+      <svg
+        className="absolute left-[max(50%,25rem)] top-0 h-[64rem] w-[128rem] -translate-x-1/2 stroke-sage-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern
+            id="installer-grid-pattern"
+            width={200}
+            height={200}
+            x="50%"
+            y={-1}
+            patternUnits="userSpaceOnUse"
+          >
+            <path d="M.5 200V.5H200" fill="none" />
+            <circle cx="100" cy="100" r="50" fill="none" strokeWidth="0.5" opacity="0.3" />
+            <circle cx="50" cy="50" r="25" fill="none" strokeWidth="0.3" opacity="0.2" />
+            <circle cx="150" cy="150" r="25" fill="none" strokeWidth="0.3" opacity="0.2" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" strokeWidth={0} fill="url(#installer-grid-pattern)" />
+      </svg>
+
+      {/* Decorative Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Large Circle - Top Right */}
+        <motion.div
+          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-sage-200/30 to-sage-300/20 rounded-full blur-3xl"
+          animate={{
+            y: [0, 30, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Medium Circle - Bottom Left */}
+        <motion.div
+          className="absolute -bottom-32 -left-32 w-64 h-64 bg-gradient-to-tr from-sage-300/20 to-sage-200/30 rounded-full blur-3xl"
+          animate={{
+            y: [0, -30, 0],
+            x: [0, 20, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Small Circle - Center Right */}
+        <motion.div
+          className="absolute top-1/2 -right-20 w-40 h-40 bg-gradient-to-bl from-sage-400/20 to-sage-300/10 rounded-full blur-2xl"
+          animate={{
+            y: [0, 40, 0],
+            x: [0, -20, 0],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
+      </div>
+
+      {/* Header with Glass Morphism */}
+      <header className="relative glass-card border-b-0 rounded-none">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
           >
-            <h1 className="text-3xl font-bold text-foreground mb-2">
-              PuttingGreen.com Installer Directory
+            <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">
+              <span className="gradient-text">PuttingGreen.com</span>
+              <span className="text-gray-900"> Installer Directory</span>
             </h1>
-            <p className="text-muted-foreground">
+            <p className="text-lg text-gray-600">
               Find expert putting green installers in your area
             </p>
           </motion.div>
@@ -154,13 +240,13 @@ export default function InstallersTestPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="space-y-6">
+      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 custom-scrollbar">
+        <div className="space-y-8">
           {/* Filters */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
             <InstallerFilters
               filters={filters}
@@ -175,7 +261,7 @@ export default function InstallersTestPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="flex justify-end"
           >
             <InstallerSortMenu
@@ -190,7 +276,7 @@ export default function InstallersTestPage() {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {sortedInstallers.map((installer) => (
                 <motion.div key={installer.id} variants={itemVariants}>
@@ -210,6 +296,9 @@ export default function InstallersTestPage() {
               <EmptyState onClearFilters={handleClearFilters} />
             </motion.div>
           )}
+
+          {/* Bottom Spacing */}
+          <div className="h-12" />
         </div>
       </main>
 

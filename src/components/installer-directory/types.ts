@@ -39,6 +39,7 @@ export interface Installer {
   specialties?: string[];
   certifications?: string[];
   serviceRadius?: number; // miles
+  portfolioImages?: string[]; // Array of portfolio image paths
 }
 
 /**

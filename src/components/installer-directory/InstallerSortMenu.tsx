@@ -1,7 +1,7 @@
 /**
  * InstallerSortMenu Component
- * Dropdown menu for sorting installers
- * Following Fluxium's design standards
+ * Native select for sorting installers
+ * Following wellness-frontend-1 design standards
  */
 
 "use client";
@@ -9,13 +9,6 @@
 import * as React from "react";
 import { ArrowUpDown } from "lucide-react";
 import { SortOption } from "./types";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 interface InstallerSortMenuProps {
   currentSort: SortOption;
@@ -34,27 +27,28 @@ export function InstallerSortMenu({
     { value: "skill-level" as const, label: "Skill Level" },
   ];
 
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onSortChange(e.target.value as SortOption);
+  };
+
   return (
-    <div className="flex items-center gap-2">
-      <ArrowUpDown className="h-4 w-4 text-muted-foreground" />
-      <span className="text-sm text-muted-foreground whitespace-nowrap">
-        Sort by:
-      </span>
-      <Select
+    <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 text-sm text-gray-600">
+        <ArrowUpDown className="h-4 w-4" />
+        <span className="whitespace-nowrap font-medium">Sort by:</span>
+      </div>
+      <select
         value={currentSort}
-        onValueChange={(value) => onSortChange(value as SortOption)}
+        onChange={handleChange}
+        className="select-primary w-auto min-w-[220px]"
+        aria-label="Sort installers"
       >
-        <SelectTrigger className="w-[200px]">
-          <SelectValue placeholder="Select sorting" />
-        </SelectTrigger>
-        <SelectContent>
-          {sortOptions.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
-              {option.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+        {sortOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

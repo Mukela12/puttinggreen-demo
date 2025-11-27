@@ -1,12 +1,14 @@
 /**
  * InstallerDetailSheet Component
- * Side drawer with full installer details
- * Following Fluxium's inline-first design principle
+ * Side drawer with full installer details - Premium glass morphism design
+ * Following Fluxium's elite design standards
  */
 
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import {
   MapPin,
   Calendar,
@@ -17,6 +19,7 @@ import {
   MapPinIcon,
   Star,
   CheckCircle2,
+  ExternalLink,
 } from "lucide-react";
 import { Installer } from "./types";
 import {
@@ -26,8 +29,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { getInstallerImage } from "@/lib/localImageHelper";
 
 interface InstallerDetailSheetProps {
   installer: Installer | null;
@@ -42,78 +44,88 @@ export function InstallerDetailSheet({
 }: InstallerDetailSheetProps) {
   if (!installer) return null;
 
-  const getSkillBadgeVariant = (skillLevel: string) => {
+  const getSkillBadgeStyle = (skillLevel: string) => {
     switch (skillLevel) {
       case "Master":
-        return "master" as const;
+        return "bg-amber-100 text-amber-900 border-amber-200";
       case "Intermediate":
-        return "intermediate" as const;
+        return "bg-blue-100 text-blue-900 border-blue-200";
       case "Novice":
-        return "novice" as const;
+        return "bg-gray-100 text-gray-700 border-gray-200";
       default:
-        return "default" as const;
+        return "bg-gray-100 text-gray-700 border-gray-200";
     }
   };
 
+  const imageUrl = installer.imageUrl || getInstallerImage(installer.id);
+
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="w-[92vw] sm:max-w-[520px] overflow-y-auto">
-        {/* Header */}
-        <SheetHeader className="pb-6 border-b border-border">
-          {/* Logo */}
-          <div className="w-24 h-24 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg mb-4">
-            <Award className="w-12 h-12 text-white" />
-          </div>
+      <SheetContent side="right" className="w-[92vw] sm:max-w-[520px] overflow-y-auto p-0">
+        {/* Hero Image */}
+        <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-sage-100 to-sage-200">
+          <Image
+            src={imageUrl}
+            alt={installer.name}
+            fill
+            className="object-cover"
+            sizes="520px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-          <SheetTitle className="text-2xl">{installer.name}</SheetTitle>
-          <SheetDescription className="flex items-center gap-2 text-base">
+          {/* Skill Badge on Image */}
+          <div className="absolute top-4 right-4">
+            <span className={`px-3 py-1.5 text-xs font-semibold rounded-full border backdrop-blur-sm ${getSkillBadgeStyle(installer.skillLevel)}`}>
+              {installer.skillLevel}
+            </span>
+          </div>
+        </div>
+
+        {/* Header */}
+        <SheetHeader className="pb-6 border-b border-gray-200 px-6 pt-6">
+          <SheetTitle className="text-2xl text-gray-900">{installer.name}</SheetTitle>
+          <SheetDescription className="flex items-center gap-2 text-base text-gray-600">
             <MapPin className="w-4 h-4" />
             {installer.city}
           </SheetDescription>
-
-          <div className="flex gap-2 pt-2">
-            <Badge variant={getSkillBadgeVariant(installer.skillLevel)}>
-              {installer.skillLevel}
-            </Badge>
-          </div>
         </SheetHeader>
 
         {/* Content */}
-        <div className="space-y-6 py-6">
+        <div className="space-y-6 py-6 px-6 pb-24">
           {/* Quick Stats */}
           {(installer.yearsExperience ||
             installer.projectsCompleted ||
             installer.rating) && (
             <div className="grid grid-cols-3 gap-4">
               {installer.yearsExperience && (
-                <div className="text-center p-3 bg-muted rounded-lg">
-                  <div className="text-2xl font-bold text-foreground">
+                <div className="text-center p-4 bg-gradient-to-br from-sage-50 to-sage-100 rounded-xl border border-sage-200">
+                  <div className="text-2xl font-bold text-gray-900">
                     {installer.yearsExperience}
                   </div>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-xs text-gray-600 mt-1">
                     Years Experience
                   </div>
                 </div>
               )}
 
               {installer.projectsCompleted && (
-                <div className="text-center p-3 bg-muted rounded-lg">
-                  <div className="text-2xl font-bold text-foreground">
+                <div className="text-center p-4 bg-gradient-to-br from-sage-50 to-sage-100 rounded-xl border border-sage-200">
+                  <div className="text-2xl font-bold text-gray-900">
                     {installer.projectsCompleted}
                   </div>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-xs text-gray-600 mt-1">
                     Projects Done
                   </div>
                 </div>
               )}
 
               {installer.rating && (
-                <div className="text-center p-3 bg-muted rounded-lg">
-                  <div className="text-2xl font-bold text-foreground flex items-center justify-center gap-1">
+                <div className="text-center p-4 bg-gradient-to-br from-sage-50 to-sage-100 rounded-xl border border-sage-200">
+                  <div className="text-2xl font-bold text-gray-900 flex items-center justify-center gap-1">
                     {installer.rating.toFixed(1)}
                     <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                   </div>
-                  <div className="text-xs text-muted-foreground">Rating</div>
+                  <div className="text-xs text-gray-600 mt-1">Rating</div>
                 </div>
               )}
             </div>
@@ -121,11 +133,11 @@ export function InstallerDetailSheet({
 
           {/* About */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
+            <h3 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-sage-600" />
               About
             </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-gray-600 leading-relaxed">
               {installer.about}
             </p>
           </div>
@@ -133,14 +145,17 @@ export function InstallerDetailSheet({
           {/* Specialties */}
           {installer.specialties && installer.specialties.length > 0 && (
             <div>
-              <h3 className="text-sm font-semibold text-foreground mb-3">
+              <h3 className="text-sm font-bold text-gray-900 mb-3">
                 Specialties
               </h3>
               <div className="flex flex-wrap gap-2">
                 {installer.specialties.map((specialty, index) => (
-                  <Badge key={index} variant="secondary">
+                  <span
+                    key={index}
+                    className="px-3 py-1.5 text-xs font-semibold rounded-full bg-sage-100 text-sage-900 border border-sage-200"
+                  >
                     {specialty}
-                  </Badge>
+                  </span>
                 ))}
               </div>
             </div>
@@ -149,16 +164,16 @@ export function InstallerDetailSheet({
           {/* Certifications */}
           {installer.certifications && installer.certifications.length > 0 && (
             <div>
-              <h3 className="text-sm font-semibold text-foreground mb-3">
+              <h3 className="text-sm font-bold text-gray-900 mb-3">
                 Certifications
               </h3>
               <div className="space-y-2">
                 {installer.certifications.map((cert, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-2 text-sm text-muted-foreground"
+                    className="flex items-center gap-2 text-sm text-gray-700"
                   >
-                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-sage-600 flex-shrink-0" />
                     <span>{cert}</span>
                   </div>
                 ))}
@@ -169,28 +184,28 @@ export function InstallerDetailSheet({
           {/* Service Area */}
           {installer.serviceRadius && (
             <div>
-              <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
-                <MapPinIcon className="w-4 h-4" />
+              <h3 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <MapPinIcon className="w-4 h-4 text-sage-600" />
                 Service Area
               </h3>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-gray-600">
                 Within {installer.serviceRadius} miles of {installer.city}
               </p>
             </div>
           )}
 
           {/* Contact Information */}
-          <div className="border-t border-border pt-6">
-            <h3 className="text-sm font-semibold text-foreground mb-3">
+          <div className="border-t border-gray-200 pt-6">
+            <h3 className="text-sm font-bold text-gray-900 mb-4">
               Contact Information
             </h3>
             <div className="space-y-3">
               {installer.phone && (
                 <div className="flex items-center gap-3 text-sm">
-                  <Phone className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                  <Phone className="w-4 h-4 text-gray-500 flex-shrink-0" />
                   <a
                     href={`tel:${installer.phone}`}
-                    className="text-primary hover:underline"
+                    className="text-sage-600 hover:text-sage-700 font-medium hover:underline transition-colors"
                   >
                     {installer.phone}
                   </a>
@@ -199,10 +214,10 @@ export function InstallerDetailSheet({
 
               {installer.email && (
                 <div className="flex items-center gap-3 text-sm">
-                  <Mail className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                  <Mail className="w-4 h-4 text-gray-500 flex-shrink-0" />
                   <a
                     href={`mailto:${installer.email}`}
-                    className="text-primary hover:underline"
+                    className="text-sage-600 hover:text-sage-700 font-medium hover:underline transition-colors"
                   >
                     {installer.email}
                   </a>
@@ -211,12 +226,12 @@ export function InstallerDetailSheet({
 
               {installer.website && (
                 <div className="flex items-center gap-3 text-sm">
-                  <Globe className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                  <Globe className="w-4 h-4 text-gray-500 flex-shrink-0" />
                   <a
                     href={`https://${installer.website}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary hover:underline"
+                    className="text-sage-600 hover:text-sage-700 font-medium hover:underline transition-colors"
                   >
                     {installer.website}
                   </a>
@@ -227,10 +242,17 @@ export function InstallerDetailSheet({
         </div>
 
         {/* Footer CTA */}
-        <div className="sticky bottom-0 left-0 right-0 p-4 border-t border-border bg-white -mx-6 -mb-6">
-          <Button className="w-full bg-primary hover:bg-primary-dark text-white shadow-sm">
+        <div className="sticky bottom-0 left-0 right-0 p-6 border-t border-gray-200 bg-white backdrop-blur-md shadow-[0_-4px_12px_rgba(0,0,0,0.08)] z-10 space-y-3">
+          <Link
+            href={`/installers-test/${installer.id}`}
+            className="w-full btn-primary inline-flex items-center justify-center gap-2"
+          >
+            View Full Profile
+            <ExternalLink className="w-4 h-4" />
+          </Link>
+          <button className="w-full py-3 px-4 bg-white border-2 border-sage-500 text-sage-700 font-semibold rounded-xl transition-all duration-300 hover:bg-sage-50 hover:border-sage-600 active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-sage-300/40">
             Request Quote
-          </Button>
+          </button>
         </div>
       </SheetContent>
     </Sheet>

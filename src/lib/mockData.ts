@@ -25,6 +25,7 @@ export const mockInstallers: Installer[] = [
       "Synthetic Turf Council Certified",
     ],
     serviceRadius: 100,
+    portfolioImages: Array.from({ length: 12 }, (_, i) => `/images/golf/portfolio/installer-1/portfolio-${i + 1}.jpg`),
   },
   {
     id: "2",
@@ -42,6 +43,7 @@ export const mockInstallers: Installer[] = [
     specialties: ["Coastal Installations", "Drainage Systems", "Residential"],
     certifications: ["Master Installer Certification", "LEED Accredited"],
     serviceRadius: 75,
+    portfolioImages: Array.from({ length: 10 }, (_, i) => `/images/golf/portfolio/installer-2/portfolio-${i + 1}.jpg`),
   },
   {
     id: "3",
@@ -58,6 +60,7 @@ export const mockInstallers: Installer[] = [
     specialties: ["Residential", "Practice Areas", "Small Spaces"],
     certifications: ["Certified Turf Installer"],
     serviceRadius: 50,
+    portfolioImages: Array.from({ length: 8 }, (_, i) => `/images/golf/portfolio/installer-3/portfolio-${i + 1}.jpg`),
   },
   {
     id: "4",
@@ -84,6 +87,7 @@ export const mockInstallers: Installer[] = [
       "Green Building Certified",
     ],
     serviceRadius: 150,
+    portfolioImages: Array.from({ length: 11 }, (_, i) => `/images/golf/portfolio/installer-4/portfolio-${i + 1}.jpg`),
   },
   {
     id: "5",
@@ -100,6 +104,7 @@ export const mockInstallers: Installer[] = [
     specialties: ["Residential", "Quick Install", "Budget-Friendly"],
     certifications: ["Certified Installer"],
     serviceRadius: 40,
+    portfolioImages: Array.from({ length: 9 }, (_, i) => `/images/golf/portfolio/installer-5/portfolio-${i + 1}.jpg`),
   },
   {
     id: "6",
@@ -122,6 +127,7 @@ export const mockInstallers: Installer[] = [
     ],
     certifications: ["Master Installer", "Storm-Resistant Specialist"],
     serviceRadius: 80,
+    portfolioImages: Array.from({ length: 12 }, (_, i) => `/images/golf/portfolio/installer-6/portfolio-${i + 1}.jpg`),
   },
   {
     id: "7",
@@ -138,6 +144,7 @@ export const mockInstallers: Installer[] = [
     specialties: ["Desert Climate", "Water Conservation", "Residential"],
     certifications: ["Desert Installation Specialist", "Water-Wise Certified"],
     serviceRadius: 60,
+    portfolioImages: Array.from({ length: 10 }, (_, i) => `/images/golf/portfolio/installer-7/portfolio-${i + 1}.jpg`),
   },
   {
     id: "8",
@@ -155,6 +162,7 @@ export const mockInstallers: Installer[] = [
     specialties: ["Wet Climate", "Drainage", "Moss Prevention", "Residential"],
     certifications: ["Master Installer", "Drainage Specialist"],
     serviceRadius: 90,
+    portfolioImages: Array.from({ length: 11 }, (_, i) => `/images/golf/portfolio/installer-8/portfolio-${i + 1}.jpg`),
   },
   {
     id: "9",
@@ -171,6 +179,7 @@ export const mockInstallers: Installer[] = [
     specialties: ["Residential", "Small Projects", "Affordable"],
     certifications: ["Basic Installer Certification"],
     serviceRadius: 30,
+    portfolioImages: Array.from({ length: 8 }, (_, i) => `/images/golf/portfolio/installer-9/portfolio-${i + 1}.jpg`),
   },
   {
     id: "10",
@@ -188,6 +197,7 @@ export const mockInstallers: Installer[] = [
     specialties: ["High Altitude", "Mountain Climate", "Residential"],
     certifications: ["Altitude Installation Specialist", "Cold Climate Certified"],
     serviceRadius: 70,
+    portfolioImages: Array.from({ length: 10 }, (_, i) => `/images/golf/portfolio/installer-10/portfolio-${i + 1}.jpg`),
   },
   {
     id: "11",
@@ -214,6 +224,7 @@ export const mockInstallers: Installer[] = [
       "Tropical Turf Expert",
     ],
     serviceRadius: 100,
+    portfolioImages: Array.from({ length: 12 }, (_, i) => `/images/golf/portfolio/installer-11/portfolio-${i + 1}.jpg`),
   },
   {
     id: "12",
@@ -230,6 +241,7 @@ export const mockInstallers: Installer[] = [
     specialties: ["Eco-Friendly", "Sustainable", "Water-Efficient"],
     certifications: ["Green Installer Certified", "LEED Accredited"],
     serviceRadius: 50,
+    portfolioImages: Array.from({ length: 9 }, (_, i) => `/images/golf/portfolio/installer-12/portfolio-${i + 1}.jpg`),
   },
   {
     id: "13",
@@ -252,6 +264,7 @@ export const mockInstallers: Installer[] = [
     ],
     certifications: ["Master Installer", "All-Season Specialist"],
     serviceRadius: 85,
+    portfolioImages: Array.from({ length: 11 }, (_, i) => `/images/golf/portfolio/installer-13/portfolio-${i + 1}.jpg`),
   },
   {
     id: "14",
@@ -268,6 +281,7 @@ export const mockInstallers: Installer[] = [
     specialties: ["Residential", "Small Projects", "Starter Greens"],
     certifications: ["Certified Installer"],
     serviceRadius: 35,
+    portfolioImages: Array.from({ length: 8 }, (_, i) => `/images/golf/portfolio/installer-14/portfolio-${i + 1}.jpg`),
   },
   {
     id: "15",
@@ -285,6 +299,7 @@ export const mockInstallers: Installer[] = [
     specialties: ["Residential", "Commercial", "Large Projects"],
     certifications: ["Advanced Installer", "Commercial Specialist"],
     serviceRadius: 65,
+    portfolioImages: Array.from({ length: 10 }, (_, i) => `/images/golf/portfolio/installer-15/portfolio-${i + 1}.jpg`),
   },
 ];
 

@@ -1,6 +1,6 @@
 # PuttingGreen.com Installer Directory
 
-A modern, production-ready installer directory component built with Next.js, TypeScript, and Tailwind CSS. This project demonstrates clean architecture, professional UI/UX design, and scalable component patterns.
+A modern, production-ready installer directory component built with Next.js, TypeScript, and Tailwind CSS. This project demonstrates clean architecture, premium glass morphism design, and scalable component patterns following Fluxium's elite design standards.
 
 **Live Demo:** [Coming Soon - Deploy Link]
 
@@ -22,7 +22,7 @@ A modern, production-ready installer directory component built with Next.js, Typ
 ## Features
 
 ### Core Functionality
-✅ **Client-side filtering** by city and skill level
+✅ **Client-side filtering** by city and skill level with native HTML selects
 ✅ **Real-time search** across installer names, cities, and descriptions
 ✅ **Multi-criteria sorting** (name, experience, skill level)
 ✅ **Detailed installer profiles** with side drawer (Sheet component)
@@ -32,12 +32,13 @@ A modern, production-ready installer directory component built with Next.js, Typ
 ✅ **Result count** - always know how many installers match your criteria
 
 ### UX/UI Highlights
-✨ **Smooth animations** using Framer Motion (stagger effects, fade-ins)
-✨ **Balanced card design** - medium images with organized information hierarchy
-✨ **Professional iconography** - Lucide React icons throughout
-✨ **Golf/turf green theme** - custom color palette matching PuttingGreen.com brand
-✨ **Hover effects** - interactive feedback on cards and buttons
-✨ **Inline interactions** - minimal modals, following modern UX patterns
+✨ **Premium glass morphism design** - frosted glass effects and backdrop blur
+✨ **Smooth animations** using Framer Motion (stagger effects, floating elements, fade-ins)
+✨ **Real golf course images** - Dynamic images from Unsplash API
+✨ **Professional sage green palette** - Premium color system matching wellness/golf aesthetics
+✨ **Premium hover effects** - Transform, scale, and shadow transitions on cards and buttons
+✨ **Floating animated backgrounds** - Subtle animated circles creating depth
+✨ **Native HTML controls** - No external UI libraries for selects/dropdowns (clean, accessible)
 
 ---
 
@@ -47,11 +48,13 @@ A modern, production-ready installer directory component built with Next.js, Typ
 |------------|---------|---------|
 | **Next.js** | React framework with App Router | 16.0.5 |
 | **TypeScript** | Type safety and developer experience | Latest |
-| **Tailwind CSS** | Utility-first styling | 4.0 (v4 with new @theme) |
-| **Radix UI** | Accessible, unstyled UI primitives | Latest |
-| **Framer Motion** | Animation library | Latest |
+| **Tailwind CSS** | Utility-first styling with glass morphism | 4.0 (v4 with @theme inline) |
+| **Radix UI Dialog** | Accessible sheet/drawer component only | Latest |
+| **Framer Motion** | Animation library for premium interactions | Latest |
 | **Lucide React** | Icon library | Latest |
-| **class-variance-authority** | Component variant management | Latest |
+| **Unsplash API** | Dynamic golf course images | source.unsplash.com |
+
+**Design Philosophy:** Minimal external dependencies. Native HTML selects and buttons styled with Tailwind for maximum performance and accessibility.
 
 ---
 
@@ -106,29 +109,28 @@ npm run lint
 puttinggreen-installer-directory/
 ├── src/
 │   ├── app/
-│   │   ├── globals.css              # Tailwind config, custom colors/theme
+│   │   ├── globals.css              # Tailwind v4 config with sage palette & glass morphism
 │   │   ├── layout.tsx               # Root layout
+│   │   ├── page.tsx                 # Landing page with hero section
 │   │   └── installers-test/
 │   │       └── page.tsx             # Main installer directory page
 │   │
 │   ├── components/
 │   │   ├── installer-directory/     # Feature components
-│   │   │   ├── InstallerCard.tsx          # Individual card component
-│   │   │   ├── InstallerFilters.tsx       # Search + filter bar
-│   │   │   ├── InstallerSortMenu.tsx      # Sort dropdown
-│   │   │   ├── InstallerDetailSheet.tsx   # Side drawer details
-│   │   │   ├── EmptyState.tsx             # No results component
+│   │   │   ├── InstallerCard.tsx          # Premium glass card with real images
+│   │   │   ├── InstallerFilters.tsx       # Glass morphism filter bar (native select)
+│   │   │   ├── InstallerSortMenu.tsx      # Sort menu (native select)
+│   │   │   ├── InstallerDetailSheet.tsx   # Side drawer with sage styling
+│   │   │   ├── EmptyState.tsx             # No results state
 │   │   │   └── types.ts                   # TypeScript interfaces
 │   │   │
-│   │   └── ui/                      # Reusable UI primitives
-│   │       ├── button.tsx                 # Button with variants
-│   │       ├── sheet.tsx                  # Slide-in drawer (Radix Dialog)
-│   │       ├── select.tsx                 # Dropdown select (Radix Select)
-│   │       ├── input.tsx                  # Text input
-│   │       └── badge.tsx                  # Badge/tag component
+│   │   └── ui/                      # Minimal UI primitives
+│   │       ├── sheet.tsx                  # Slide-in drawer (Radix Dialog only)
+│   │       └── input.tsx                  # Text input component
 │   │
 │   └── lib/
 │       ├── mockData.ts              # 15 realistic installer profiles
+│       ├── unsplashHelper.ts        # Golf course image URL generator
 │       └── utils/
 │           └── cn.ts                # className utility (clsx + tailwind-merge)
 │
@@ -146,24 +148,25 @@ puttinggreen-installer-directory/
 ### 1. InstallerCard
 **Location:** `src/components/installer-directory/InstallerCard.tsx`
 
-Displays individual installer with balanced design.
+Premium glass morphism card with real golf course images.
 
 **Props:**
 - `installer: Installer` - Installer data object
 - `onViewDetails: (installer: Installer) => void` - Click handler
 
 **Features:**
-- Medium-sized logo placeholder (80x80px)
-- Skill level badge (Master/Intermediate/Novice)
-- City and years of experience
+- Real golf course hero image from Unsplash (400x300px)
+- Glass morphism with backdrop blur and white/80 opacity
+- Skill level badge with color coding (Master/Intermediate/Novice)
+- Quick stats grid (years, projects, rating)
 - About section (2-line clamp)
-- Stats row (projects completed, rating)
-- "View Details" button with hover effect
+- Premium button with gradient and hover transform
+- Hover glow effect with sage green gradient
 
 ### 2. InstallerFilters
 **Location:** `src/components/installer-directory/InstallerFilters.tsx`
 
-Top horizontal filter bar with search and dropdowns.
+Glass morphism filter bar with native HTML selects.
 
 **Props:**
 - `filters: FilterState` - Current filter values
@@ -174,15 +177,16 @@ Top horizontal filter bar with search and dropdowns.
 
 **Features:**
 - Search input with icon and clear button
-- City dropdown (Radix Select)
-- Skill level dropdown
-- Active filter chips (removable)
-- Result count display
+- Native HTML select for city (styled with Tailwind)
+- Native HTML select for skill level
+- Active filter chips (removable with different colors per type)
+- Result count display with icon
+- Glass card background with backdrop blur
 
 ### 3. InstallerSortMenu
 **Location:** `src/components/installer-directory/InstallerSortMenu.tsx`
 
-Dropdown menu for sorting options.
+Native HTML select menu for sorting options.
 
 **Props:**
 - `currentSort: SortOption` - Currently active sort
@@ -192,6 +196,11 @@ Dropdown menu for sorting options.
 - Name (A-Z / Z-A)
 - Experience (High to Low / Low to High)
 - Skill Level (Master > Intermediate > Novice)
+
+**Styling:**
+- Custom dropdown arrow via background-image SVG
+- Glass morphism effect
+- Sage green focus ring
 
 ### 4. InstallerDetailSheet
 **Location:** `src/components/installer-directory/InstallerDetailSheet.tsx`
@@ -231,36 +240,51 @@ Displayed when no installers match filters.
 
 ## Design Decisions
 
-### Color Palette (Golf/Turf Theme)
+### Color Palette (Premium Sage/Wellness Theme)
 ```css
-Primary Green:    #10b981 (emerald)
-Dark Green:       #059669
-Light Green:      #d1fae5
-Accent Blue:      #3b82f6
+/* Sage Green Palette - Following wellness-frontend-1 standards */
+Sage 50:          #f5f8f5 (backgrounds)
+Sage 100:         #e8f1e8 (light accents)
+Sage 200:         #d1e3d1
+Sage 300:         #add0b3 (primary - gradients)
+Sage 400:         #8fbc8f
+Sage 500:         #6b8e6b (buttons, primary text)
+Sage 600:         #567256 (hover states)
+Sage 700:         #455b45 (dark accents)
 
-Skill Badges:
-  Master:         #f59e0b (gold)
-  Intermediate:   #3b82f6 (blue)
-  Novice:         #6b7280 (gray)
+/* Skill Badges */
+Master:           #f59e0b (amber/gold)
+Intermediate:     #3b82f6 (blue)
+Novice:           #6b7280 (gray)
+
+/* Glass Morphism */
+Glass Background: rgba(255, 255, 255, 0.8)
+Backdrop Blur:    blur(10px - 20px)
+Border:           rgba(255, 255, 255, 0.2)
 ```
 
 ### Layout Choices
+- **Glass morphism cards** - Frosted glass effect with backdrop blur
+- **Floating animated backgrounds** - Subtle moving circles for depth
 - **Top filter bar** - Clean, modern, mobile-friendly (vs. sidebar)
-- **Balanced cards** - Medium images + organized info (vs. image-heavy or text-heavy)
+- **Real images** - Unsplash API for golf course photos
 - **Side drawer** - Inline detail view following modern UX patterns
 - **3-column grid** on desktop, 2 on tablet, 1 on mobile
 
 ### Animation Strategy
 - **Staggered card entrance** - 0.1s delay between cards
-- **Fade-in from bottom** - Cards animate in with subtle upward motion
+- **Fade-in from bottom** - Cards animate in with subtle upward motion (y: 20 -> 0)
+- **Floating circles** - Infinite looping animations with easeInOut (8-10s duration)
 - **Smooth transitions** - 300-400ms for all interactions
-- **Hover scale** - Cards scale to 102% on hover for feedback
+- **Hover effects** - Cards scale to 102% with -translate-y-2 and enhanced shadows
+- **Button transforms** - Scale and translate on hover with shadow transitions
 
 ### Component Architecture
-- **Reusable UI primitives** - Button, Sheet, Select, Input, Badge can be used across app
+- **Minimal dependencies** - Native HTML controls styled with Tailwind (no Radix Select/Button)
+- **Only Radix Dialog** - Used for Sheet component (complex accessibility needs)
 - **Feature-specific components** - InstallerCard, InstallerFilters live in feature folder
 - **TypeScript strict mode** - All props and data structures fully typed
-- **Composition over inheritance** - Components composed from primitives
+- **Glass morphism utilities** - Reusable .glass-card, .btn-primary, .select-primary classes
 
 ---
 
@@ -367,7 +391,9 @@ This is a test project for PuttingGreen.com. Not licensed for public use.
 
 ## Acknowledgments
 
-- **Radix UI** for accessible, unstyled component primitives
-- **Tailwind CSS** for the utility-first styling approach
-- **Framer Motion** for smooth, declarative animations
+- **Radix UI Dialog** for the accessible Sheet/Drawer component
+- **Tailwind CSS** for the utility-first styling approach and glass morphism capabilities
+- **Framer Motion** for smooth, declarative animations and floating elements
 - **Lucide React** for beautiful, consistent icons
+- **Unsplash** for high-quality golf course imagery
+- **wellness-frontend-1** project for design system inspiration (sage palette, glass morphism)

@@ -36,12 +36,6 @@ export function InstallerFilters({
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Don't trim here - let user type freely, trimming happens during filtering
     const newValue = e.target.value;
-    console.log('🔍 SEARCH INPUT CHANGE:', {
-      newValue,
-      valueLength: newValue.length,
-      isEmpty: newValue === '',
-      isTruthy: !!newValue,
-    });
     onFilterChange({ ...filters, search: newValue });
   };
 

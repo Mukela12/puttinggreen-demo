@@ -32,20 +32,10 @@ export default function InstallersTestPage() {
 
   // Filter installers
   const filteredInstallers = React.useMemo(() => {
-    console.log('🔄 FILTER RUNNING:', {
-      rawSearch: filters.search,
-      searchLength: filters.search?.length,
-      trimmedSearch: filters.search?.trim(),
-      trimmedLength: filters.search?.trim().length,
-      city: filters.city,
-      skillLevel: filters.skillLevel,
-    });
-
     return mockInstallers.filter((installer) => {
       // Search filter - trim to handle whitespace
       const searchTerm = filters.search?.trim();
       if (searchTerm) {
-        console.log(`  ✓ Filtering installer: ${installer.name} with search: "${searchTerm}"`);
         const searchLower = searchTerm.toLowerCase();
         const matchesSearch =
           installer.name.toLowerCase().includes(searchLower) ||
@@ -67,11 +57,6 @@ export default function InstallersTestPage() {
       return true;
     });
   }, [filters]);
-
-  // Log final filtered count
-  React.useEffect(() => {
-    console.log(`📊 FILTERED RESULT: ${filteredInstallers.length} installers`);
-  }, [filteredInstallers]);
 
   // Sort installers
   const sortedInstallers = React.useMemo(() => {
@@ -273,6 +258,7 @@ export default function InstallersTestPage() {
           {/* Results Grid or Empty State */}
           {sortedInstallers.length > 0 ? (
             <motion.div
+              key={`results-${sortedInstallers.length}-${filters.search}-${filters.city}-${filters.skillLevel}`}
               variants={containerVariants}
               initial="hidden"
               animate="visible"

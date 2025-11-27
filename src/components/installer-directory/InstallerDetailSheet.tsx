@@ -30,6 +30,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { getInstallerImage } from "@/lib/localImageHelper";
+import { QuoteRequestDialog } from "./QuoteRequestDialog";
 
 interface InstallerDetailSheetProps {
   installer: Installer | null;
@@ -42,6 +43,8 @@ export function InstallerDetailSheet({
   open,
   onOpenChange,
 }: InstallerDetailSheetProps) {
+  const [quoteDialogOpen, setQuoteDialogOpen] = React.useState(false);
+
   if (!installer) return null;
 
   const getSkillBadgeStyle = (skillLevel: string) => {
@@ -58,6 +61,10 @@ export function InstallerDetailSheet({
   };
 
   const imageUrl = installer.imageUrl || getInstallerImage(installer.id);
+
+  const handleRequestQuote = () => {
+    setQuoteDialogOpen(true);
+  };
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -250,11 +257,21 @@ export function InstallerDetailSheet({
             View Full Profile
             <ExternalLink className="w-4 h-4" />
           </Link>
-          <button className="w-full py-3 px-4 bg-white border-2 border-sage-500 text-sage-700 font-semibold rounded-xl transition-all duration-300 hover:bg-sage-50 hover:border-sage-600 active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-sage-300/40">
+          <button
+            onClick={handleRequestQuote}
+            className="w-full py-3 px-4 bg-white border-2 border-sage-500 text-sage-700 font-semibold rounded-xl transition-all duration-300 hover:bg-sage-50 hover:border-sage-600 active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-sage-300/40"
+          >
             Request Quote
           </button>
         </div>
       </SheetContent>
+
+      {/* Quote Request Dialog */}
+      <QuoteRequestDialog
+        installer={installer}
+        open={quoteDialogOpen}
+        onOpenChange={setQuoteDialogOpen}
+      />
     </Sheet>
   );
 }

@@ -93,3 +93,26 @@ export interface InstallerSortMenuProps {
   currentSort: SortOption;
   onSortChange: (sort: SortOption) => void;
 }
+
+/**
+ * Quote request form data
+ */
+export interface QuoteRequest {
+  installerId: string;
+  installerName: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  projectType: "Residential" | "Commercial" | "Custom";
+  projectDetails: string;
+  preferredContact: "email" | "phone";
+}
+
+/**
+ * Props for QuoteRequestDialog component
+ */
+export interface QuoteRequestDialogProps {
+  installer: Installer | null;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}

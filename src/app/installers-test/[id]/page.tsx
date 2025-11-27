@@ -28,6 +28,7 @@ import { mockInstallers } from "@/lib/mockData";
 import { getInstallerImage } from "@/lib/localImageHelper";
 import { notFound } from "next/navigation";
 import { ProfileGallery } from "@/components/ui/ProfileGallery";
+import { QuoteRequestDialog } from "@/components/installer-directory/QuoteRequestDialog";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -36,12 +37,17 @@ interface PageProps {
 export default function InstallerProfilePage({ params }: PageProps) {
   const { id } = use(params);
   const installer = mockInstallers.find((i) => i.id === id);
+  const [quoteDialogOpen, setQuoteDialogOpen] = React.useState(false);
 
   if (!installer) {
     notFound();
   }
 
   const imageUrl = installer.imageUrl || getInstallerImage(installer.id);
+
+  const handleRequestQuote = () => {
+    setQuoteDialogOpen(true);
+  };
 
   const getSkillBadgeStyle = (skillLevel: string) => {
     switch (skillLevel) {
@@ -359,7 +365,10 @@ export default function InstallerProfilePage({ params }: PageProps) {
                 </div>
 
                 {/* CTA Button */}
-                <button className="w-full btn-primary">
+                <button
+                  onClick={handleRequestQuote}
+                  className="w-full btn-primary"
+                >
                   Request Quote
                 </button>
               </motion.div>
@@ -367,6 +376,13 @@ export default function InstallerProfilePage({ params }: PageProps) {
           </div>
         </div>
       </div>
+
+      {/* Quote Request Dialog */}
+      <QuoteRequestDialog
+        installer={installer}
+        open={quoteDialogOpen}
+        onOpenChange={setQuoteDialogOpen}
+      />
     </div>
   );
 }

@@ -1,0 +1,308 @@
+/**
+ * Mock installer data for the PuttingGreen.com directory
+ * Production app would fetch this from an API/database
+ */
+
+import { Installer } from "@/components/installer-directory/types";
+
+export const mockInstallers: Installer[] = [
+  {
+    id: "1",
+    name: "GreenScape Pro Installations",
+    city: "Phoenix",
+    skillLevel: "Master",
+    yearsExperience: 15,
+    about:
+      "Specializing in luxury residential and commercial putting greens with over 500 successful installations. Our master-certified team brings PGA-level quality to every project.",
+    phone: "(602) 555-0123",
+    email: "info@greenscapepro.com",
+    website: "www.greenscapepro.com",
+    projectsCompleted: 523,
+    rating: 4.9,
+    specialties: ["Residential", "Commercial", "Custom Design"],
+    certifications: [
+      "PGA Certified Installer",
+      "Synthetic Turf Council Certified",
+    ],
+    serviceRadius: 100,
+  },
+  {
+    id: "2",
+    name: "Sunset Turf Solutions",
+    city: "San Diego",
+    skillLevel: "Master",
+    yearsExperience: 12,
+    about:
+      "Award-winning installer with expertise in coastal installations and drainage systems. We've transformed over 400 backyards into personal golf paradises.",
+    phone: "(619) 555-0456",
+    email: "contact@sunsetturf.com",
+    website: "www.sunsetturf.com",
+    projectsCompleted: 412,
+    rating: 4.8,
+    specialties: ["Coastal Installations", "Drainage Systems", "Residential"],
+    certifications: ["Master Installer Certification", "LEED Accredited"],
+    serviceRadius: 75,
+  },
+  {
+    id: "3",
+    name: "Premier Greens Inc",
+    city: "Dallas",
+    skillLevel: "Intermediate",
+    yearsExperience: 7,
+    about:
+      "Growing business focused on residential putting greens and practice areas. We pride ourselves on attention to detail and customer satisfaction with competitive pricing.",
+    phone: "(214) 555-0789",
+    email: "hello@premiergreens.com",
+    projectsCompleted: 187,
+    rating: 4.6,
+    specialties: ["Residential", "Practice Areas", "Small Spaces"],
+    certifications: ["Certified Turf Installer"],
+    serviceRadius: 50,
+  },
+  {
+    id: "4",
+    name: "Elite Putting Greens",
+    city: "Los Angeles",
+    skillLevel: "Master",
+    yearsExperience: 18,
+    about:
+      "Hollywood's go-to installer for celebrity homes and luxury estates. Our installations have been featured in Architectural Digest and Golf Magazine multiple times.",
+    phone: "(310) 555-0321",
+    email: "elite@eliteputting.com",
+    website: "www.eliteputting.com",
+    projectsCompleted: 678,
+    rating: 5.0,
+    specialties: [
+      "Luxury Estates",
+      "Celebrity Homes",
+      "Custom Features",
+      "Landscape Integration",
+    ],
+    certifications: [
+      "Master Craftsman",
+      "PGA Tour Spec Certified",
+      "Green Building Certified",
+    ],
+    serviceRadius: 150,
+  },
+  {
+    id: "5",
+    name: "Metro Turf & Green",
+    city: "Phoenix",
+    skillLevel: "Intermediate",
+    yearsExperience: 5,
+    about:
+      "Fast-growing company offering quality installations at affordable prices. We specialize in straightforward residential projects and quick turnaround times.",
+    phone: "(480) 555-0654",
+    email: "info@metroturf.com",
+    projectsCompleted: 142,
+    rating: 4.4,
+    specialties: ["Residential", "Quick Install", "Budget-Friendly"],
+    certifications: ["Certified Installer"],
+    serviceRadius: 40,
+  },
+  {
+    id: "6",
+    name: "Carolina Golf & Turf",
+    city: "Charlotte",
+    skillLevel: "Master",
+    yearsExperience: 14,
+    about:
+      "Family-owned business serving the Carolinas for over a decade. Known for exceptional customer service and installations that withstand extreme weather conditions.",
+    phone: "(704) 555-0987",
+    email: "carolina@cgturf.com",
+    website: "www.carolinagolfturf.com",
+    projectsCompleted: 456,
+    rating: 4.9,
+    specialties: [
+      "Weather-Resistant",
+      "Family-Owned",
+      "Residential",
+      "Commercial",
+    ],
+    certifications: ["Master Installer", "Storm-Resistant Specialist"],
+    serviceRadius: 80,
+  },
+  {
+    id: "7",
+    name: "Desert Oasis Putting Greens",
+    city: "Las Vegas",
+    skillLevel: "Intermediate",
+    yearsExperience: 6,
+    about:
+      "Experts in desert climate installations with water-saving designs. We create stunning putting greens that thrive in the harsh Nevada environment year-round.",
+    phone: "(702) 555-0147",
+    email: "info@desertoasisgreens.com",
+    projectsCompleted: 198,
+    rating: 4.7,
+    specialties: ["Desert Climate", "Water Conservation", "Residential"],
+    certifications: ["Desert Installation Specialist", "Water-Wise Certified"],
+    serviceRadius: 60,
+  },
+  {
+    id: "8",
+    name: "Precision Greens Co",
+    city: "Seattle",
+    skillLevel: "Master",
+    yearsExperience: 11,
+    about:
+      "Northwest's premier installer with expertise in drainage and moss prevention. Our greens perform beautifully in wet climates with minimal maintenance required.",
+    phone: "(206) 555-0258",
+    email: "hello@precisiongreens.com",
+    website: "www.precisiongreens.co",
+    projectsCompleted: 334,
+    rating: 4.8,
+    specialties: ["Wet Climate", "Drainage", "Moss Prevention", "Residential"],
+    certifications: ["Master Installer", "Drainage Specialist"],
+    serviceRadius: 90,
+  },
+  {
+    id: "9",
+    name: "Austin Green Solutions",
+    city: "Austin",
+    skillLevel: "Novice",
+    yearsExperience: 2,
+    about:
+      "New to the market but trained by industry veterans. We offer competitive rates and modern installation techniques for small to medium residential projects.",
+    phone: "(512) 555-0369",
+    email: "contact@austingreen.com",
+    projectsCompleted: 48,
+    rating: 4.3,
+    specialties: ["Residential", "Small Projects", "Affordable"],
+    certifications: ["Basic Installer Certification"],
+    serviceRadius: 30,
+  },
+  {
+    id: "10",
+    name: "Rocky Mountain Greens",
+    city: "Denver",
+    skillLevel: "Intermediate",
+    yearsExperience: 8,
+    about:
+      "High-altitude specialists with unique expertise in mountain climate installations. We understand the challenges of elevation and temperature extremes in Colorado.",
+    phone: "(303) 555-0741",
+    email: "info@rockymountaingreens.com",
+    website: "www.rockymountaingreens.com",
+    projectsCompleted: 223,
+    rating: 4.7,
+    specialties: ["High Altitude", "Mountain Climate", "Residential"],
+    certifications: ["Altitude Installation Specialist", "Cold Climate Certified"],
+    serviceRadius: 70,
+  },
+  {
+    id: "11",
+    name: "Sunshine State Putting Greens",
+    city: "Miami",
+    skillLevel: "Master",
+    yearsExperience: 16,
+    about:
+      "Florida's most experienced installer with hurricane-resistant designs. Our greens have survived multiple major storms and continue to look pristine years later.",
+    phone: "(305) 555-0852",
+    email: "sunshine@sspgreens.com",
+    website: "www.sunshinestategreens.com",
+    projectsCompleted: 587,
+    rating: 4.9,
+    specialties: [
+      "Hurricane-Resistant",
+      "Tropical Climate",
+      "Residential",
+      "Commercial",
+    ],
+    certifications: [
+      "Master Installer",
+      "Storm-Proof Specialist",
+      "Tropical Turf Expert",
+    ],
+    serviceRadius: 100,
+  },
+  {
+    id: "12",
+    name: "Bay Area Golf Installations",
+    city: "San Francisco",
+    skillLevel: "Intermediate",
+    yearsExperience: 6,
+    about:
+      "Serving the Bay Area with eco-friendly installation practices. We focus on sustainable materials and water-efficient designs for environmentally conscious clients.",
+    phone: "(415) 555-0963",
+    email: "info@bayareagolf.com",
+    projectsCompleted: 176,
+    rating: 4.5,
+    specialties: ["Eco-Friendly", "Sustainable", "Water-Efficient"],
+    certifications: ["Green Installer Certified", "LEED Accredited"],
+    serviceRadius: 50,
+  },
+  {
+    id: "13",
+    name: "Chicago Turf Masters",
+    city: "Chicago",
+    skillLevel: "Master",
+    yearsExperience: 13,
+    about:
+      "Midwest's top choice for all-season installations. Our greens are engineered to withstand harsh winters and hot summers, maintaining perfect playability year-round.",
+    phone: "(312) 555-0174",
+    email: "masters@chicagoturf.com",
+    website: "www.chicagoturfmasters.com",
+    projectsCompleted: 445,
+    rating: 4.8,
+    specialties: [
+      "Four-Season",
+      "Winter-Hardy",
+      "Residential",
+      "Commercial",
+    ],
+    certifications: ["Master Installer", "All-Season Specialist"],
+    serviceRadius: 85,
+  },
+  {
+    id: "14",
+    name: "Pacific Northwest Greens",
+    city: "Portland",
+    skillLevel: "Novice",
+    yearsExperience: 3,
+    about:
+      "Up-and-coming installer with a passion for creating beautiful putting greens. We bring enthusiasm and competitive pricing to every project we undertake.",
+    phone: "(503) 555-0285",
+    email: "info@pnwgreens.com",
+    projectsCompleted: 67,
+    rating: 4.2,
+    specialties: ["Residential", "Small Projects", "Starter Greens"],
+    certifications: ["Certified Installer"],
+    serviceRadius: 35,
+  },
+  {
+    id: "15",
+    name: "Lone Star Putting Solutions",
+    city: "Houston",
+    skillLevel: "Intermediate",
+    yearsExperience: 9,
+    about:
+      "Texas-sized expertise in residential and commercial installations. We handle projects of all sizes with the same dedication to quality and customer satisfaction.",
+    phone: "(713) 555-0396",
+    email: "hello@lonestarputting.com",
+    website: "www.lonestarputting.com",
+    projectsCompleted: 267,
+    rating: 4.6,
+    specialties: ["Residential", "Commercial", "Large Projects"],
+    certifications: ["Advanced Installer", "Commercial Specialist"],
+    serviceRadius: 65,
+  },
+];
+
+/**
+ * Get unique list of cities from installers
+ */
+export function getUniqueCities(): string[] {
+  const cities = Array.from(new Set(mockInstallers.map((i) => i.city)));
+  return cities.sort();
+}
+
+/**
+ * Get unique list of skill levels
+ */
+export function getSkillLevels(): Array<{ value: string; label: string }> {
+  return [
+    { value: "Master", label: "Master" },
+    { value: "Intermediate", label: "Intermediate" },
+    { value: "Novice", label: "Novice" },
+  ];
+}

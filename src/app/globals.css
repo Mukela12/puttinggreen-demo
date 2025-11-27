@@ -3,19 +3,72 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* PuttingGreen.com Brand Colors - Golf/Turf Theme */
+  --primary-green: #10b981;
+  --dark-green: #059669;
+  --light-green: #d1fae5;
+  --accent-blue: #3b82f6;
+
+  /* Skill Level Badge Colors */
+  --master-gold: #f59e0b;
+  --intermediate-blue: #3b82f6;
+  --novice-gray: #6b7280;
+
+  /* UI Colors */
+  --border: #e5e7eb;
+  --card: #ffffff;
+  --card-hover: #f9fafb;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
 }
 
 @theme inline {
+  /* Base Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Brand Colors */
+  --color-primary: var(--primary-green);
+  --color-primary-dark: var(--dark-green);
+  --color-primary-light: var(--light-green);
+  --color-accent: var(--accent-blue);
+
+  /* Skill Levels */
+  --color-skill-master: var(--master-gold);
+  --color-skill-intermediate: var(--intermediate-blue);
+  --color-skill-novice: var(--novice-gray);
+
+  /* UI Elements */
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
+  /* Animations */
+  --animate-duration: 0.3s;
+  --animate-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --border: #27272a;
+    --card: #18181b;
+    --card-hover: #27272a;
+    --muted: #18181b;
   }
 }
 
@@ -23,4 +76,11 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Utility Classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }

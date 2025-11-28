@@ -228,7 +228,7 @@ export default function Home() {
             <TechBadge>Tailwind CSS 4</TechBadge>
             <TechBadge>Framer Motion</TechBadge>
             <TechBadge>Lucide Icons</TechBadge>
-            <TechBadge>Unsplash API</TechBadge>
+            <TechBadge>Local Images</TechBadge>
           </div>
         </motion.div>
 

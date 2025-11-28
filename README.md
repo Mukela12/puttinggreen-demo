@@ -2,7 +2,31 @@
 
 A modern, production-ready installer directory component built with Next.js, TypeScript, and Tailwind CSS. This project demonstrates clean architecture, premium glass morphism design, and scalable component patterns following Fluxium's elite design standards.
 
-**Live Demo:** [Coming Soon - Deploy Link]
+**Live Demo:** [https://puttinggreen.netlify.app/](https://puttinggreen.netlify.app/)
+**Installer Directory:** [https://puttinggreen.netlify.app/installers-test](https://puttinggreen.netlify.app/installers-test)
+
+---
+
+## Quick Start
+
+Get the project running in 60 seconds:
+
+```bash
+# Clone the repository (or extract the ZIP file)
+cd puttinggreen-installer-directory
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Open browser and navigate to:
+# http://localhost:3000              (Landing page)
+# http://localhost:3000/installers-test   (Installer directory)
+```
+
+That's it! The project uses local images (no external API keys needed) and has zero configuration required.
 
 ---
 
@@ -52,9 +76,9 @@ A modern, production-ready installer directory component built with Next.js, Typ
 | **Radix UI Dialog** | Accessible sheet/drawer component only | Latest |
 | **Framer Motion** | Animation library for premium interactions | Latest |
 | **Lucide React** | Icon library | Latest |
-| **Unsplash API** | Dynamic golf course images | source.unsplash.com |
+| **Local Images** | 15 card images + 3 hero images + portfolio images | Stored in /public/images |
 
-**Design Philosophy:** Minimal external dependencies. Native HTML selects and buttons styled with Tailwind for maximum performance and accessibility.
+**Design Philosophy:** Minimal external dependencies. Native HTML selects and buttons styled with Tailwind. All images stored locally for 100% reliability (no external API dependencies).
 
 ---
 
@@ -113,55 +137,77 @@ puttinggreen-installer-directory/
 │   │   ├── layout.tsx               # Root layout
 │   │   ├── page.tsx                 # Landing page with hero section
 │   │   └── installers-test/
-│   │       └── page.tsx             # Main installer directory page
+│   │       ├── page.tsx             # Main installer directory page
+│   │       └── [id]/
+│   │           └── page.tsx         # Individual installer detail page (dynamic route)
 │   │
 │   ├── components/
 │   │   ├── installer-directory/     # Feature components
-│   │   │   ├── InstallerCard.tsx          # Premium glass card with real images
-│   │   │   ├── InstallerFilters.tsx       # Glass morphism filter bar (native select)
-│   │   │   ├── InstallerSortMenu.tsx      # Sort menu (native select)
-│   │   │   ├── InstallerDetailSheet.tsx   # Side drawer with sage styling
-│   │   │   ├── EmptyState.tsx             # No results state
-│   │   │   └── types.ts                   # TypeScript interfaces
+│   │   │   ├── InstallerCard.tsx            # Premium glass card with local images
+│   │   │   ├── InstallerFilters.tsx         # Glass morphism filter bar (native select)
+│   │   │   ├── InstallerSortMenu.tsx        # Sort menu (native select)
+│   │   │   ├── InstallerDetailSheet.tsx     # Side drawer with sage styling
+│   │   │   ├── QuoteRequestDialog.tsx       # Quote request form dialog
+│   │   │   ├── EmptyState.tsx               # No results state
+│   │   │   └── types.ts                     # TypeScript interfaces
 │   │   │
 │   │   └── ui/                      # Minimal UI primitives
-│   │       ├── sheet.tsx                  # Slide-in drawer (Radix Dialog only)
-│   │       └── input.tsx                  # Text input component
+│   │       ├── sheet.tsx                    # Slide-in drawer (Radix Dialog)
+│   │       ├── dialog.tsx                   # Modal dialog (Radix Dialog)
+│   │       ├── input.tsx                    # Text input component
+│   │       ├── label.tsx                    # Form label component
+│   │       ├── textarea.tsx                 # Textarea component
+│   │       ├── Lightbox.tsx                 # Image lightbox for portfolio viewing
+│   │       └── ProfileGallery.tsx           # Image gallery with carousel
 │   │
 │   └── lib/
-│       ├── mockData.ts              # 15 realistic installer profiles
-│       ├── unsplashHelper.ts        # Golf course image URL generator
+│       ├── mockData.ts              # 15 realistic installer profiles with portfolio images
+│       ├── localImageHelper.ts      # Local image path generator (no API dependencies!)
 │       └── utils/
 │           └── cn.ts                # className utility (clsx + tailwind-merge)
 │
-├── public/                          # Static assets
+├── public/
+│   └── images/
+│       └── golf/
+│           ├── cards/               # 15 installer card images (golf-1.jpg to golf-15.jpg)
+│           ├── hero/                # 3 hero images for landing page
+│           └── portfolio/           # Portfolio images for each installer
+│               ├── installer-1/     # 12 images per installer
+│               ├── installer-2/     # 10 images per installer
+│               └── ... (15 total)   # Variable number of portfolio images
+│
 ├── package.json                     # Dependencies and scripts
 ├── tsconfig.json                    # TypeScript configuration
 ├── postcss.config.mjs              # PostCSS config (Tailwind v4)
-└── README.md                        # This file
+├── README.md                        # This file (comprehensive documentation)
+├── DEPLOYMENT.md                    # Deployment guide for Vercel/Netlify
+└── SETUP.md                         # Simple setup guide for non-technical users
 ```
 
 ---
 
 ## Component Documentation
 
+### Core Components
+
 ### 1. InstallerCard
 **Location:** `src/components/installer-directory/InstallerCard.tsx`
 
-Premium glass morphism card with real golf course images.
+Premium glass morphism card with local golf course images.
 
 **Props:**
 - `installer: Installer` - Installer data object
 - `onViewDetails: (installer: Installer) => void` - Click handler
 
 **Features:**
-- Real golf course hero image from Unsplash (400x300px)
+- Real golf course hero image from local storage (400x300px optimized)
 - Glass morphism with backdrop blur and white/80 opacity
 - Skill level badge with color coding (Master/Intermediate/Novice)
 - Quick stats grid (years, projects, rating)
 - About section (2-line clamp)
 - Premium button with gradient and hover transform
 - Hover glow effect with sage green gradient
+- Consistent image per installer using hash-based selection
 
 ### 2. InstallerFilters
 **Location:** `src/components/installer-directory/InstallerFilters.tsx`
@@ -236,9 +282,93 @@ Displayed when no installers match filters.
 - "Clear All Filters" button
 - Tips for broadening search
 
+### 6. QuoteRequestDialog
+**Location:** `src/components/installer-directory/QuoteRequestDialog.tsx`
+
+Modal dialog for requesting quotes from installers.
+
+**Props:**
+- `open: boolean` - Dialog open state
+- `onOpenChange: (open: boolean) => void` - Open state handler
+- `installerName: string` - Name of installer to request quote from
+
+**Features:**
+- Form with name, email, phone, and message fields
+- Input validation
+- Sage green styling matching overall theme
+- Smooth animations with Framer Motion
+- Accessible modal (Radix UI Dialog)
+
+### 7. Lightbox
+**Location:** `src/components/ui/Lightbox.tsx`
+
+Full-screen image viewer for portfolio images.
+
+**Props:**
+- `images: string[]` - Array of image URLs
+- `currentIndex: number` - Currently displayed image index
+- `onClose: () => void` - Close handler
+- `onNavigate: (index: number) => void` - Navigation handler
+
+**Features:**
+- Full-screen overlay with backdrop blur
+- Previous/Next navigation buttons
+- Keyboard support (arrow keys, escape)
+- Image counter display
+- Smooth transitions
+- Click outside to close
+
+### 8. ProfileGallery
+**Location:** `src/components/ui/ProfileGallery.tsx`
+
+Image carousel gallery using Embla Carousel.
+
+**Props:**
+- `images: string[]` - Array of image URLs to display
+- `onImageClick: (index: number) => void` - Image click handler (opens lightbox)
+
+**Features:**
+- Smooth carousel with autoplay
+- Thumbnail navigation
+- Click to open in lightbox
+- Responsive grid layout
+- Glass morphism container
+- Automatic cycling every 5 seconds
+
 ---
 
 ## Design Decisions
+
+### Local Image System (No External Dependencies!)
+
+One of the key architectural decisions is using **locally stored images** instead of external APIs like Unsplash. This provides:
+
+**Benefits:**
+- ✅ **100% Reliability** - No network failures or API rate limits
+- ✅ **Zero Configuration** - No API keys or environment variables needed
+- ✅ **Faster Load Times** - Images served directly from CDN/server
+- ✅ **Offline Development** - Work without internet connection
+- ✅ **Consistent Quality** - Curated, optimized images
+
+**Image Organization:**
+```
+public/images/golf/
+├── cards/          # 15 installer card images (golf-1.jpg to golf-15.jpg)
+├── hero/           # 3 hero background images for landing page
+└── portfolio/      # 15 installer directories with 8-12 portfolio images each
+```
+
+**How It Works:**
+- `localImageHelper.ts` uses a hash function to consistently assign the same image to each installer
+- Each installer gets a unique card image based on their ID
+- Portfolio images are stored in installer-specific directories
+- Hero images rotate for the landing page
+
+**For Production:**
+If you later want to switch to a real image API or user-uploaded images:
+1. Replace `getInstallerImage()` calls with your API endpoint
+2. Update the `Installer` type to include an `imageUrl` field
+3. The component structure remains the same - just swap the image source!
 
 ### Color Palette (Premium Sage/Wellness Theme)
 ```css
@@ -267,9 +397,11 @@ Border:           rgba(255, 255, 255, 0.2)
 - **Glass morphism cards** - Frosted glass effect with backdrop blur
 - **Floating animated backgrounds** - Subtle moving circles for depth
 - **Top filter bar** - Clean, modern, mobile-friendly (vs. sidebar)
-- **Real images** - Unsplash API for golf course photos
+- **Real images** - Locally stored high-quality golf course photos
 - **Side drawer** - Inline detail view following modern UX patterns
 - **3-column grid** on desktop, 2 on tablet, 1 on mobile
+- **Dynamic routing** - Individual installer pages at `/installers-test/[id]`
+- **Portfolio galleries** - Carousel with lightbox for viewing installer work
 
 ### Animation Strategy
 - **Staggered card entrance** - 0.1s delay between cards

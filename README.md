@@ -32,7 +32,6 @@ That's it! The project uses local images (no external API keys needed) and has z
 
 ## Table of Contents
 
-- [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
@@ -43,28 +42,6 @@ That's it! The project uses local images (no external API keys needed) and has z
 
 ---
 
-## Features
-
-### Core Functionality
-✅ **Client-side filtering** by city and skill level with native HTML selects
-✅ **Real-time search** across installer names, cities, and descriptions
-✅ **Multi-criteria sorting** (name, experience, skill level)
-✅ **Detailed installer profiles** with side drawer (Sheet component)
-✅ **Responsive design** - works beautifully on mobile, tablet, and desktop
-✅ **Empty state** with helpful messaging when no results match
-✅ **Active filter chips** - easily remove individual filters
-✅ **Result count** - always know how many installers match your criteria
-
-### UX/UI Highlights
-✨ **Premium glass morphism design** - frosted glass effects and backdrop blur
-✨ **Smooth animations** using Framer Motion (stagger effects, floating elements, fade-ins)
-✨ **Real golf course images** - Dynamic images from Unsplash API
-✨ **Professional sage green palette** - Premium color system matching wellness/golf aesthetics
-✨ **Premium hover effects** - Transform, scale, and shadow transitions on cards and buttons
-✨ **Floating animated backgrounds** - Subtle animated circles creating depth
-✨ **Native HTML controls** - No external UI libraries for selects/dropdowns (clean, accessible)
-
----
 
 ## Tech Stack
 

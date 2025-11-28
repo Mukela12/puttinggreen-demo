@@ -85,12 +85,14 @@ That's it! The project uses local images (no external API keys needed) and has z
 ## Getting Started
 
 ### Prerequisites
-- Node.js 18+ and npm
+- **Node.js** (version 18 or higher) - [Download here](https://nodejs.org/)
+- **npm** (comes with Node.js)
+- A **code editor** (optional) - [VS Code](https://code.visualstudio.com/) recommended
 
 ### Installation & Running Locally
 
 ```bash
-# Navigate to project directory
+# Clone the repository (or extract ZIP file)
 cd puttinggreen-installer-directory
 
 # Install dependencies
@@ -100,7 +102,8 @@ npm install
 npm run dev
 
 # Open browser and navigate to:
-# http://localhost:3000/installers-test
+# http://localhost:3000                    (Landing page)
+# http://localhost:3000/installers-test    (Installer directory)
 ```
 
 The installer directory is available at `/installers-test` route.
@@ -111,7 +114,7 @@ The installer directory is available at `/installers-test` route.
 # Create optimized production build
 npm run build
 
-# Start production server
+# Test production build locally
 npm start
 ```
 
@@ -124,6 +127,25 @@ npx tsc --noEmit
 # Run linting
 npm run lint
 ```
+
+### Common Issues & Troubleshooting
+
+**"npm: command not found"**
+- Install Node.js from [nodejs.org](https://nodejs.org/)
+
+**"Port 3000 is already in use"**
+- Stop other applications using port 3000, or
+- Run `npm run dev -- -p 3001` to use a different port
+
+**"Module not found" errors**
+- Delete `node_modules` and `package-lock.json`
+- Run `npm install` again
+
+**Images not showing**
+- Verify `/public/images/golf/` folder exists with:
+  - `/cards/` - 15 card images
+  - `/hero/` - 3 hero images
+  - `/portfolio/` - 15 installer directories
 
 ---
 
@@ -179,9 +201,7 @@ puttinggreen-installer-directory/
 ├── package.json                     # Dependencies and scripts
 ├── tsconfig.json                    # TypeScript configuration
 ├── postcss.config.mjs              # PostCSS config (Tailwind v4)
-├── README.md                        # This file (comprehensive documentation)
-├── DEPLOYMENT.md                    # Deployment guide for Vercel/Netlify
-└── SETUP.md                         # Simple setup guide for non-technical users
+└── README.md                        # This file (comprehensive documentation)
 ```
 
 ---
@@ -494,6 +514,87 @@ The folder structure (`components/ui` vs `components/installer-directory`) makes
 - Consistent naming conventions (PascalCase for components, camelCase for functions)
 - Commented code explaining complex logic
 - README documentation for future developers
+
+---
+
+## Deployment
+
+The project is already deployed at **[https://puttinggreen.netlify.app/](https://puttinggreen.netlify.app/)**
+
+### Deploy to Netlify (Current Setup)
+
+The project is already configured for Netlify. To deploy your own copy:
+
+1. **Push to GitHub** (if not already done):
+   ```bash
+   git remote add origin https://github.com/YOUR_USERNAME/puttinggreen-installer-directory.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+2. **Deploy via Netlify Dashboard**:
+   - Go to [netlify.com](https://netlify.com) and sign in
+   - Click "Add new site" → "Import an existing project"
+   - Connect your GitHub account and select the repository
+   - Build settings (auto-detected):
+     - **Build command:** `npm run build`
+     - **Publish directory:** `.next`
+     - **Framework:** Next.js
+   - Click "Deploy site"
+
+3. **Access your site**:
+   - Netlify provides a URL like: `https://your-site-name.netlify.app`
+   - The installer directory is at: `/installers-test`
+
+### Deploy to Vercel (Alternative)
+
+Vercel is the recommended platform for Next.js:
+
+**Option 1: Vercel CLI**
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Login
+vercel login
+
+# Deploy
+vercel
+
+# Deploy to production
+vercel --prod
+```
+
+**Option 2: Vercel Dashboard**
+1. Go to [vercel.com/new](https://vercel.com/new)
+2. Import your GitHub repository
+3. Vercel auto-detects Next.js configuration
+4. Click "Deploy"
+
+### Environment Variables
+
+This project requires **no environment variables** for the test task. All images are local and there are no external API dependencies.
+
+For production, you might add:
+```env
+NEXT_PUBLIC_API_URL=https://api.puttinggreen.com
+DATABASE_URL=postgresql://...
+```
+
+### Custom Domain (Optional)
+
+To use a custom domain:
+1. Go to your deployment dashboard (Netlify/Vercel)
+2. Navigate to **Settings** → **Domains**
+3. Add your custom domain
+4. Update DNS records as instructed
+
+### Continuous Deployment
+
+Once connected to GitHub:
+- Every push to `main` branch triggers a production deployment
+- Pull requests get automatic preview deployments
+- Each deployment gets a unique URL for testing
 
 ---
 
